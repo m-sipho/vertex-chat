@@ -8,13 +8,13 @@
         </div>
 
         <div class="form-row">
-            <input type="text" placeholder="Username..." name="name" value="{{ name }}">
-
-            <div class="wrapper">
-                <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}">
-                <button type="submit" name="generate">GENERATE</button>
-            </div>
-            <button type="submit" name="connect" class="connect">CONNECT</button>
+            <input type="text" placeholder="Username..." name="name" value="{{ name }}" class="text-input">
         </div>
+
+        <div class="form-row form-group">
+            <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}" class="text-input">
+            <button type="submit" name="generate" class="btn">GENERATE</button>
+        </div>
+        <button type="submit" name="connect" class="btn btn-primary connect">CONNECT</button>
     </form>
 {% endblock %}
