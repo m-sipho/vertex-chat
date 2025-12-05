@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        <div class="heading">
+            <h2>Vertex</h2>
+            <p>Real-Time Chat</p>
+        </div>
+
+        <div class="form-row">
+            <input type="text" placeholder="Username..." name="name" value="{{ name }}">
+
+            <div class="wrapper">
+                <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}">
+                <button type="submit" name="generate">GENERATE</button>
+            </div>
+            <button type="submit" name="connect" class="connect"></button>
+        </div>
+    </form>
+{% endblock %}
