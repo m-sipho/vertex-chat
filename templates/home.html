@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+    {% endif %}
+
     <form method="post">
         <div class="heading">
             <h2>Vertex</h2>
@@ -13,7 +20,7 @@
 
         <div class="form-row form-group">
             <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}" class="text-input">
-            <button type="submit" name="generate" class="btn">GENERATE</button>
+            <button type="button" name="generate" class="btn">GENERATE</button>
         </div>
         <button type="submit" name="connect" class="btn btn-primary connect">CONNECT</button>
     </form>
