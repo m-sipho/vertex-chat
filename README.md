@@ -2,7 +2,7 @@
 Vertex Chat is a real time messaging platform built using Python and WebSockets. It allows users to create private chat rooms and send instant messages.
 
 ## Features
-- **Real time Messaging**: Messages appera instantly without refreshing.
+- **Real time Messaging**: Messages appear instantly without refreshing.
 - **Chat Rooms**: Create unique codes to chat privately with friends.
 - **Self Joining**: Automatically joins again if a user refreshes the page.
 - **Secure Config**: Protects your server key using environment variables.
