@@ -1,0 +1,121 @@
+:root {
+    --bg-body: #0b0f19;
+    --bg-card: #111827;
+    --bg-panel: #121624;
+    --bg-input: #030712;
+    --main-color: #4f46e5;
+    --border-color: #1f2937;
+    --main-hover: #4338ca;
+    --main-text: #f3f3f3;
+    --muted-text: #9ca3af;
+    --accent-glow: 0 0 20px rgba(79, 70, 229, .15);
+    --glass-border: 1px solid rgba(255, 255, 255, .05);
+    --family-font: 'Inter', system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: var(--family-font)
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--main-text);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url(../images/tile_texture.png); */
+    overflow: hidden;
+}
+
+form {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 400px;
+    border: var(--glass-border);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .5);
+    position: relative;
+    overflow: hidden;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.heading h2 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.heading p {
+    margin: 0.5rem 0 0;
+    color: var(--muted-text);
+    font-size: 0.875;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}/*     CHECK THIS OUT                               */
+
+.form-row input {
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: .5rem;
+} /*    CHECK THIS OUT        */
+
+.form-group input {
+    text-transform: uppercase;
+    font-family: monospace;
+}
+
+.text-input {
+    flex: 1;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: white;
+    padding: 1rem;
+    border-radius: .75rem;
+    font-size: 1rem;
+    outline: none;
+    transition: all .2s;
+}
+
+.text-input:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 2px rgba(79 80, 229, .2);
+}
+
+.btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--main-text);
+    padding: .75rem 1.5rem;
+    border-radius: .75rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .2s;
+}
+
+.btn-primary {
+    background: var(--main-color);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--main-hover);
+}
+
+.connect {
+    width: 100%;
+    margin-top: .5rem;
+}
