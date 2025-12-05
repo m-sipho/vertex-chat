@@ -19,8 +19,8 @@
         </div>
 
         <div class="form-row form-group">
-            <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}" class="text-input">
-            <button type="button" name="generate" class="btn">GENERATE</button>
+            <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}" class="text-input" id="generate">
+            <button type="button" onclick="generate_unique_code()" class="btn">GENERATE</button>
         </div>
         <button type="submit" name="connect" class="btn btn-primary connect">CONNECT</button>
     </form>
