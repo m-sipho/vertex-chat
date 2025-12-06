@@ -70,7 +70,7 @@ def room():
     if room is None or session.get("name") is None or room not in rooms:
         return redirect(url_for("home"))
     
-    return render_template("room.html")
+    return render_template("room.html", code_badge=room)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)
