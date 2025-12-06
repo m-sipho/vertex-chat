@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="506" height="583" viewBox="747 1174 506 583">
+<defs>
+<clipPath id="clip-0">
+<path clip-rule="nonzero" d="M 747 1220 L 1253 1220 L 1253 1757 L 747 1757 Z M 747 1220 "/>
+</clipPath>
+<clipPath id="clip-1">
+<path clip-rule="nonzero" d="M 1184.921875 1256.320312 L 1000 1661.769531 L 815.082031 1256.320312 L 747.96875 1220.898438 L 1000 1756.320312 L 1252.03125 1220.898438 Z M 1184.921875 1256.320312 "/>
+</clipPath>
+<clipPath id="clip-2">
+<path clip-rule="nonzero" d="M 1184.921875 1256.320312 L 1000 1661.769531 L 815.082031 1256.320312 L 747.96875 1220.898438 L 1000 1756.320312 L 1252.03125 1220.898438 L 1184.921875 1256.320312 "/>
+</clipPath>
+<!-- Updated Gradient to use Indigo colors -->
+<linearGradient id="linear-pattern-0" gradientUnits="userSpaceOnUse" x1="0.000000000000000444" y1="0" x2="0.999996" y2="0" gradientTransform="matrix(504.064, 0, 0, 504.064, 747.968, 1488.61)">
+<stop offset="0" stop-color="#312e81" stop-opacity="1"/> <!-- Darker Indigo -->
+<stop offset="1" stop-color="#4f46e5" stop-opacity="1"/> <!-- Target Indigo -->
+</linearGradient>
+</defs>
+
+<!-- Main V Path (Color Changed) -->
+<path fill-rule="nonzero" fill="#4f46e5" fill-opacity="1" d="M 1154.488281 1241.738281 L 1143.539062 1174.238281 L 1000 1479.179688 L 856.460938 1174.238281 L 845.507812 1241.738281 L 1000 1580.480469 L 1154.488281 1241.738281 "/>
+
+<!-- Clipped Path using the updated Gradient -->
+<g clip-path="url(#clip-0)">
+<g clip-path="url(#clip-1)">
+<g clip-path="url(#clip-2)">
+<path fill-rule="nonzero" fill="url(#linear-pattern-0)" d="M 747.96875 1220.898438 L 747.96875 1756.320312 L 1252.03125 1756.320312 L 1252.03125 1220.898438 Z M 747.96875 1220.898438 "/>
+</g>
+</g>
+</g>
+</svg>
