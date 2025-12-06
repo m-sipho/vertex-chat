@@ -47,11 +47,20 @@ def home():
 
             return render_template("home.html", name=name, code=room_code)
         
-        # Check if the user did not pass a room code
-        if not code:
-            return render_template("home.html", error="The room code cannot be empty.")
+        if connect != False:
+            # Check if the user did not pass a room code
+            if not code:
+                return render_template("home.html", error="The room code cannot be empty.")
+            
+            code = code.upper()
 
-
+            if code not in rooms:
+                return render_template("home.html", error="Room does not exist", name=name)
+            
+            # Success! Log user in
+            session["room"] = code
+            session["name"] = name
+            return redirect(url_for("room"))
     return render_template("home.html")
 
 if __name__ == "__main__":
