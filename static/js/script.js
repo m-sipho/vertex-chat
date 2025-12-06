@@ -1,5 +1,7 @@
 var socketio = io()
 
+let myUsername = document.getElementById("current-username").value;
+
 const messages = document.querySelector(".messages-area");
 
 function createNotification(name, msg) {
@@ -18,6 +20,9 @@ socketio.on("message", (data) => {
     // Check if create notification events
     if (data.message === "joined the room" || data.message === "left the room") {
         createNotification(data.name, data.message);
+    } else {
+        const isMe = data.name === myUsername;
+        appendMessage(data.name, data.message, isMe);
     }
 });
 
@@ -25,7 +30,8 @@ function sendMessage() {
     const input = document.getElementById("message-input");
     const message = input.value;
     if (message == "") return;
-    appendMessage("You", message, true);
+    socketio.emit("message", {data: message})
+    
     input.value = "";
     input.focus();
 }
@@ -35,7 +41,7 @@ function appendMessage(user, msg, isMe) {
     div.className = `message-row ${isMe ? 'own' : 'other'}`;
 
     const name = document.createElement("span");
-    name = className = "sender-name";
+    name.className = "sender-name";
     name.innerText = user;
 
     const bubble = document.createElement("div");

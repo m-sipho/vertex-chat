@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <!-- Hidden input to store the username -->
+     <input type="hidden" id="current-username" value="{{ username }}">
 
     <div class="chat-container">
         <div class="chat-header">
