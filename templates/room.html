@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="brand">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
+                </div>
+
+                <div class="brand-text">
+                    <h1>ROOM <span>LIVE</span></h1>
+                    <div class="code-info">
+                        <span>CODE:</span>
+                        <span class="code-badge">ABCDH</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-container">
+                <span class="status-text">Connected</span>
+                <div class="status-dot"></div>
+            </div>
+        </div>
+
+        <div class="messages-area">
+
+        </div>
+
+        <div class="chat-footer">
+            <div class="input-row">
+                <input type="text" class="text-input send-input" placeholder="Message">
+                <button type="button" class="btn-send" onclick="sendMessage()">SEND</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
