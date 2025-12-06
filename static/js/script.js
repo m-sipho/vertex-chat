@@ -6,7 +6,7 @@ function createNotification(name, msg) {
     const content = `
         <div class="join-notification">
             <span class="notify-text">
-                <span class="name">${name}</span> ${msg}
+                <span class="join-name">${name}</span> ${msg}
             </span>
         </div>
     `
