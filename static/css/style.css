@@ -234,7 +234,7 @@ form {
 }
 
 .messages-area::-webkit-scrollbar {
-    width: 8px;
+    width: 3px;
 }
 
 .messages-area::-webkit-scrollbar-track {
@@ -242,12 +242,12 @@ form {
 }
 
 .messages-area::-webkit-scrollbar-thumb {
-    background: #374137;
+    background: var(--main-color);
     border-radius: 4px;
 }
 
 .messages-area::-webkit-scrollbar-thumb:hover {
-    background: #4b5563;
+    background: var(--main-hover);
 }
 
 .chat-footer {
@@ -278,4 +278,40 @@ form {
 
 .send-input {
     width: 100%;
+}
+
+.join-notification {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: .5rem 0;
+    animation: fadeIn .6s ease-in-out;
+}
+
+.notify-text {
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-panel);
+    padding: .5rem .75rem;
+    border-radius: 1000px;
+    box-shadow: 0 20px 15px -5px rgba(0, 0, 0, .1 );
+    text-transform: uppercase;
+    letter-spacing: .05rem;
+    font-size: .7rem;
+}
+
+.join-name {
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
