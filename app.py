@@ -10,18 +10,42 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
+rooms = {}
+
+def generate_unique_code(length):
+    """Generates a code and ensures it does not exist in rooms"""
+    characters = ascii_uppercase + digits
+    while True:
+        code = ""
+        for _ in range(length):
+            code += random.choice(characters)
+        
+        if code not in rooms:
+            break
+    
+    return code
+
 @app.route("/", methods=["POST", "GET"])
 def home():
     # Grab our form data
     if request.method == "POST":
         name = request.form.get("name")
         code = request.form.get("code")
-        # generate = request.form.get("generate", False) # return False if generate doem't exist
-        # connect = request.form.get("connect", False) # return False if connect doesn't exist
+        generate = request.form.get("generate", False) # return False if generate doesn't exist
+        connect = request.form.get("connect", False) # return False if connect doesn't exist
 
         # Check if the user did not pass a name
         if not name:
             return render_template("home.html", error="Username cannot be empty.")
+    
+        # Check if generate button was clicked
+        if generate != False:
+            room_code = generate_unique_code(5)
+
+            # Create user immediately, so it exists when user click CONNECT
+            rooms[room_code] = {"members": 0, "messages": []}
+
+            return render_template("home.html", name=name, code=room_code)
         
         # Check if the user did not pass a room code
         if not code:
