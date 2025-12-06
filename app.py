@@ -37,7 +37,7 @@ def home():
 
         # Check if the user did not pass a name
         if not name:
-            return render_template("home.html", error="Username cannot be empty.")
+            return render_template("home.html", error="Username cannot be empty.", code=code)
     
         # Check if generate button was clicked
         if generate != False:
@@ -51,7 +51,7 @@ def home():
         if connect != False:
             # Check if the user did not pass a room code
             if not code:
-                return render_template("home.html", error="The room code cannot be empty.")
+                return render_template("home.html", error="The room code cannot be empty.", name=name)
             
             code = code.upper()
 
