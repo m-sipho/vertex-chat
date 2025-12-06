@@ -86,7 +86,7 @@ def connect(auth):
         return
     
     join_room(room)
-    send({"name": name, "message": "has joined the room"}, to=room)
+    send({"name": name, "message": "joined the room"}, to=room)
     rooms[room]["members"] += 1
     print(f"{name} joined room {room}")
 
@@ -101,7 +101,7 @@ def disconnect():
         if rooms[room]["members"] <= 0:
             del rooms[room]
     
-    send({"name": name, "message": "has left the room"}, to=room)
+    send({"name": name, "message": "left the room"}, to=room)
     print(f"{name} left room {room}")
 
 if __name__ == "__main__":
