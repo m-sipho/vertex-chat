@@ -22,5 +22,10 @@ socketio.on("message", (data) => {
 });
 
 function sendMessage() {
-    console.log("send");
+    const input = document.getElementById("message-input");
+    const message = input.value;
+    if (message == "") return;
+    appendMessage("You", message, true);
+    input.value = "";
+    input.focus();
 }
