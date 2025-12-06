@@ -29,3 +29,23 @@ function sendMessage() {
     input.value = "";
     input.focus();
 }
+
+function appendMessage(user, msg, isMe) {
+    const div = document.createElement("div");
+    div.className = `message-row ${isMe ? 'own' : 'other'}`;
+
+    const name = document.createElement("span");
+    name = className = "sender-name";
+    name.innerText = user;
+
+    const bubble = document.createElement("div");
+    bubble.className = `bubble ${isMe ? 'own' : 'other'}`;
+    bubble.innerText = msg;
+
+    div.appendChild(name);
+    div.appendChild(bubble);
+
+    const messagesArea = document.querySelector(".messages-area");
+    messagesArea.appendChild(div);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+}
