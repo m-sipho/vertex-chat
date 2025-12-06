@@ -86,7 +86,7 @@ def connect(auth):
         return
     
     join_room(room)
-    send({"name": name, "message": "has entered the room"}, to=room)
+    send({"name": name, "message": "has joined the room"}, to=room)
     rooms[room]["members"] += 1
     print(f"{name} joined room {room}")
 
