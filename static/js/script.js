@@ -15,7 +15,10 @@ function createNotification(name, msg) {
 }
 
 socketio.on("message", (data) => {
-    createNotification(data.name, data.message);
+    // Check if create notification events
+    if (data.message === "joined the room" || data.message === "left the room") {
+        createNotification(data.name, data.message);
+    }
 });
 
 function sendMessage() {
