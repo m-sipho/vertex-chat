@@ -27,7 +27,24 @@
         </div>
 
         <div class="messages-area">
+            {% for msg in messages %}
 
+                {% if msg.message == "joined the room" or msg.message == "left the room" %}
+                    <div class="join-notification">
+                        <span class="notify-text">
+                            <span class="join-name">{{ msg.name }}</span> {{ msg.message }}
+                        </span>
+                    </div>
+                {% else %}
+                    <div class="message-row {% if msg.name == username %}own{% else %}other{% endif %}">
+                        <span class="sender-name">{{ msg.name }}</span>
+                        <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
+                            {{ msg.message }}
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
         </div>
 
         <div class="chat-footer">
