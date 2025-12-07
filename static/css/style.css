@@ -304,6 +304,59 @@ form {
     font-weight: 600;
 }
 
+.message-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+}
+
+.message-row.own {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.message-row.other {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.sender-name {
+    font-size: .7rem;
+    color: var(--muted-text);
+    margin-bottom: 4px;
+    padding: 0 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.bubble {
+    padding: .75rem 1.25rem;
+    border-radius: 1rem;
+    font-size: .95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1);
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.bubble.own {
+    background: var(--main-color);
+    color: var(--main-text);
+    border-bottom-right-radius: .1rem;
+    box-shadow: 0 0 10px var(--accent-glow);
+    animation: fadeIn .5s ease-in-out;
+}
+
+.bubble.other {
+    background: var(--bg-input);
+    color: var(--main-text);
+    border: 1px solid var(--border-color);
+    border-bottom-left-radius: .1rem;
+    animation: fadeIn .5s ease-in-out;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
