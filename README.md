@@ -63,4 +63,6 @@ ngrok http 5000
 
 ## Acknowledgement
 - Got tile texture image from <a href="https://www.transparenttextures.com/subtle-zebra-3d.html">https://www.transparenttextures.com/subtle-zebra-3d.html</a>
+
+- V Logo by <a href="https://www.vecteezy.com/members/anggasaputro">Angga saputro</a> from <a href="https://www.vecteezy.com/vector-art/11193285-v-letter-lightning-logo-template">Vectors by Vecteezy</a>
       
