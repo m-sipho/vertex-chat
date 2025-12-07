@@ -25,10 +25,11 @@ socketio.on("message", (data) => {
     } else {
         const isMe = data.name === myUsername;
         if (!isMe) {
-            sound.currentTime = 0; // Rewind to the start
-            sound.play().catch(e => {
-                console.log("Audio blocked");
-            })
+            const audio = document.getElementById("notify-audio");
+            if (audio != null) {
+                audio.currentTime = 0;
+                audio.play();
+            }
         }
         appendMessage(data.name, data.message, isMe);
     }
