@@ -4,6 +4,8 @@ let myUsername = document.getElementById("current-username").value;
 
 const messages = document.querySelector(".messages-area");
 
+const sound = new Audio("../static/sounds/message-alert.wav")
+
 function createNotification(name, msg) {
     const content = `
         <div class="join-notification">
@@ -22,6 +24,12 @@ socketio.on("message", (data) => {
         createNotification(data.name, data.message);
     } else {
         const isMe = data.name === myUsername;
+        if (!isMe) {
+            sound.currentTime = 0; // Rewind to the start
+            sound.play().catch(e => {
+                console.log("Audio blocked");
+            })
+        }
         appendMessage(data.name, data.message, isMe);
     }
 });
