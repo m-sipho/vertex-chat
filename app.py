@@ -4,6 +4,7 @@ import random
 from string import ascii_uppercase, digits
 import os
 from dotenv import load_dotenv
+from datetime import datetime, timezone
 
 load_dotenv()
 app = Flask(__name__)
@@ -80,9 +81,13 @@ def message(data):
     if room not in rooms:
         return
     
+    # Get current time
+    time = datetime.now(timezone.utc).isoformat()
+    
     content = {
         "name": session.get("name"),
-        "message": data["data"]
+        "message": data["data"],
+        "time": time
     }
 
     send(content, to=room)
