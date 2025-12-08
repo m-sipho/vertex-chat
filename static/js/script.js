@@ -18,7 +18,11 @@ function createNotification(name, msg) {
     messages.scrollTop = messages.scrollHeight;
 }
 
+// Listener waiting for send() from the server
 socketio.on("message", (data) => {
+    // Format the time
+    const formattedTime = timeFormat(data.time);
+
     // Check if create notification events
     if (data.message === "joined the room" || data.message === "left the room") {
         createNotification(data.name, data.message);
@@ -31,7 +35,7 @@ socketio.on("message", (data) => {
                 audio.play();
             }
         }
-        appendMessage(data.name, data.message, isMe);
+        appendMessage(data.name, data.message, formattedTime, isMe);
     }
 });
 
@@ -39,13 +43,15 @@ function sendMessage() {
     const input = document.getElementById("message-input");
     const message = input.value;
     if (message == "") return;
+
+    // Send an event named "message" to the server via web socket tunnel
     socketio.emit("message", {data: message})
     
     input.value = "";
     input.focus();
 }
 
-function appendMessage(user, msg, isMe) {
+function appendMessage(user, msg, time, isMe) {
     const div = document.createElement("div");
     div.className = `message-row ${isMe ? 'own' : 'other'}`;
 
@@ -55,7 +61,10 @@ function appendMessage(user, msg, isMe) {
 
     const bubble = document.createElement("div");
     bubble.className = `bubble ${isMe ? 'own' : 'other'}`;
-    bubble.innerText = msg;
+    bubble.innerHTML = `
+        <div>${msg}</div>
+        <div class="timestamp">${time}</div>
+    `;
 
     div.appendChild(name);
     div.appendChild(bubble);
@@ -71,3 +80,33 @@ messageInput.addEventListener('keydown', (e) => {
         sendMessage();
     }
 })
+
+function timeFormat(time) {
+    // Get current time
+    const now = new Date();
+    const messageDate = new Date(time);
+
+    const isToday = (
+        now.getDate() == messageDate.getDate() &&
+        now.getMonth() == messageDate.getMonth() &&
+        now.getFullYear() == messageDate.getFullYear()
+    );
+
+    // How time will show if the message is from today
+    todayOptions = {
+        hour: "2-digit",    // Get two digits of hours
+        minute: "2-digit"   // Get two digits of minutes
+    };
+
+    // How time will show if its any day before today
+    beforeOptions = {
+        month: "numeric",
+        day: "numeric"
+    }
+
+    if (isToday) {
+        return messageDate.toLocaleTimeString(undefined, todayOptions);
+    } else {
+        return messageDate.toLocaleTimeString(undefined, beforeOptions) + " " + messageDate.toLocaleTimeString(undefined, todayOptions);
+    }
+}

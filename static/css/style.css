@@ -367,6 +367,10 @@ form {
     animation: fadeIn .5s ease-in-out;
 }
 
+.timestamp {
+    text-align: right;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
