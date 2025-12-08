@@ -110,3 +110,13 @@ function timeFormat(time) {
         return messageDate.toLocaleTimeString(undefined, beforeOptions) + " " + messageDate.toLocaleTimeString(undefined, todayOptions);
     }
 }
+
+// Fix the timestamps to correct format
+document.addEventListener('DOMContentLoaded', () => {
+    const timestamps = document.querySelectorAll(".timestamp");
+
+    timestamps.forEach((timestmp) => {
+        timestmp.innerText = timeFormat(timestmp.getAttribute("time-utc"));
+    })
+
+});
