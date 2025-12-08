@@ -258,7 +258,9 @@ form {
 
 .input-row {
     display: flex;
-    gap: .75rem;
+    /* gap: .75rem; */
+    position: relative;
+    width: 100%;
 }
 
 .btn-send {
@@ -270,10 +272,18 @@ form {
     cursor: pointer;
     font-weight: 600;
     transition: all .2s;
+    position: absolute;
+    right: .5rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .btn-send:hover {
     background-color: var(--main-hover);
+}
+
+#message-input {
+    padding-right: 6.5rem;
 }
 
 .send-input {
