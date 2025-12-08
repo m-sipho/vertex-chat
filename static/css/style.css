@@ -368,7 +368,10 @@ form {
 }
 
 .timestamp {
+    font-size: .6rem;
+    margin-top: 2px;
     text-align: right;
+    opacity: .5;
 }
 
 @keyframes fadeIn {
