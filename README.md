@@ -49,16 +49,23 @@ ngrok http 5000
 
 ## Project Structure
 ```
-/my_chat_app
-  ├── requirements.txt
+/vertex-chat
   ├── app.py
+  ├── README.md
+  ├── requirements.txt
   └── templates
         └── base.html
         └── home.html
         └── room.html
   └── static
         └── css
-            └── style.css
+        |    └── style.css
+        └── images
+        |    └── logo.svg
+        └── js
+        |    └── script.js
+        └── sounds
+             └── message-alert.wav
 ```
 
 ## Acknowledgement
