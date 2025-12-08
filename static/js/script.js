@@ -64,3 +64,10 @@ function appendMessage(user, msg, isMe) {
     messagesArea.appendChild(div);
     messagesArea.scrollTop = messagesArea.scrollHeight;
 }
+
+const messageInput = document.getElementById("message-input");
+messageInput.addEventListener('keydown', (e) => {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+})
