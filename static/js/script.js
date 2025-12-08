@@ -93,13 +93,13 @@ function timeFormat(time) {
     );
 
     // How time will show if the message is from today
-    todayOptions = {
+    const todayOptions = {
         hour: "2-digit",    // Get two digits of hours
         minute: "2-digit"   // Get two digits of minutes
     };
 
     // How time will show if its any day before today
-    beforeOptions = {
+    const beforeOptions = {
         month: "numeric",
         day: "numeric"
     }
@@ -107,7 +107,7 @@ function timeFormat(time) {
     if (isToday) {
         return messageDate.toLocaleTimeString(undefined, todayOptions);
     } else {
-        return messageDate.toLocaleTimeString(undefined, beforeOptions) + " " + messageDate.toLocaleTimeString(undefined, todayOptions);
+        return messageDate.toLocaleString(undefined, beforeOptions) + " " + messageDate.toLocaleTimeString(undefined, todayOptions);
     }
 }
 
