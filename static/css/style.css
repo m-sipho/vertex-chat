@@ -388,7 +388,7 @@ form {
 #sidebar {
     flex: 0 0 380px;
     transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-    /* display: none; */
+    display: none;
 }
 
 .chat-room-wrapper {
