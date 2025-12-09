@@ -2,59 +2,72 @@
 
 {% block content %}
     <!-- Hidden input to store the username -->
-     <input type="hidden" id="current-username" value="{{ username }}">
+    <input type="hidden" id="current-username" value="{{ username }}">
 
-     <audio id="notify-audio" src="../static/sounds/message-alert.wav" preload="auto"></audio>
+    <audio id="notify-audio" src="../static/sounds/message-alert.wav" preload="auto"></audio>
 
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="brand">
-                <div class="logo">
-                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
-                </div>
-
-                <div class="brand-text">
-                    <h1>ROOM <span>LIVE</span></h1>
-                    <div class="code-info">
-                        <span>CODE:</span>
-                        <span class="code-badge">{{ code_badge }}</span>
+    <div class="chat-room-wrapper">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="brand">
+                    <div class="logo">
+                        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
                     </div>
-                </div>
-            </div>
 
-            <div class="status-container">
-                <span class="status-text">Connected</span>
-                <div class="status-dot"></div>
-            </div>
-        </div>
-
-        <div class="messages-area">
-            {% for msg in messages %}
-
-                {% if msg.message == "joined the room" or msg.message == "left the room" %}
-                    <div class="join-notification">
-                        <span class="notify-text">
-                            <span class="join-name">{{ msg.name }}</span> {{ msg.message }}
-                        </span>
-                    </div>
-                {% else %}
-                    <div class="message-row {% if msg.name == username %}own{% else %}other{% endif %}">
-                        <span class="sender-name">{{ msg.name }}</span>
-                        <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
-                            <div>{{ msg.message }}</div>
-                            <div class="timestamp" time-utc="{{ msg.time }}"></div>
+                    <div class="brand-text">
+                        <h1>ROOM <span>LIVE</span></h1>
+                        <div class="code-info">
+                            <span>CODE:</span>
+                            <span class="code-badge">{{ code_badge }}</span>
                         </div>
                     </div>
-                {% endif %}
+                </div>
 
-            {% endfor %}
+                <button class="sidebar-btn" onclick="toggleSidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="messages-area">
+                {% for msg in messages %}
+
+                    {% if msg.message == "joined the room" or msg.message == "left the room" %}
+                        <div class="join-notification">
+                            <span class="notify-text">
+                                <span class="join-name">{{ msg.name }}</span> {{ msg.message }}
+                            </span>
+                        </div>
+                    {% else %}
+                        <div class="message-row {% if msg.name == username %}own{% else %}other{% endif %}">
+                            <span class="sender-name">{{ msg.name }}</span>
+                            <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
+                                <div>{{ msg.message }}</div>
+                                <div class="timestamp" time-utc="{{ msg.time }}"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+
+            <div class="chat-footer">
+                <div class="input-row">
+                    <input type="text" class="text-input send-input" placeholder="Message" id="message-input">
+                    <button type="button" class="btn-send" onclick="sendMessage()">SEND</button>
+                </div>
+            </div>
         </div>
 
-        <div class="chat-footer">
-            <div class="input-row">
-                <input type="text" class="text-input send-input" placeholder="Message" id="message-input">
-                <button type="button" class="btn-send" onclick="sendMessage()">SEND</button>
+        <div id="sidebar" class="panel">
+            <div class="active-list-header">
+                <span>Active Agents (<span id="agent-count">0</span>)</span>
+                
             </div>
+            <ul class="agents-list" id="agents-list">
+
+            </ul>
         </div>
     </div>
 
