@@ -134,6 +134,7 @@ form {
 
 .chat-container {
     background-color: var(--bg-card);
+    flex: 1 1 auto;
     width: 95vw;
     max-width: 100%;
     height: 90vh;
@@ -372,6 +373,91 @@ form {
     margin-top: 2px;
     text-align: right;
     opacity: .5;
+}
+
+.panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 30px var(--bg-body);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+} 
+
+#sidebar {
+    flex: 0 0 380px;
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+    /* display: none; */
+}
+
+.chat-room-wrapper {
+    display: flex;
+    gap: 20px;
+    width: 90vw;
+    align-items: stretch;
+}
+
+.active-list-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--muted-text);
+    letter-spacing: .05rem;
+    text-transform: uppercase;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-btn {
+    /* display: none; */
+    color: var(--muted-text);
+    background: var(--bg-card);
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.sidebar-btn:hover {
+    color: var(--main-color);
+}
+
+.sidebar-btn::after {
+    content: "View members";
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    right: 120%; 
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);   
+    background: var(--bg-panel);
+    color: var(--text-main);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--glow-color);
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 50; 
+}
+
+.sidebar-btn:hover::after {
+    color: var(--main-text);
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(50%) translateX(0);
+}
+
+.sidebar-btn .icon {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 @keyframes fadeIn {
