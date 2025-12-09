@@ -119,4 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         timestmp.innerText = timeFormat(timestmp.getAttribute("time-utc"));
     })
 
+    messages.scrollTop = messages.scrollHeight;
+
 });
