@@ -479,6 +479,29 @@ form {
     flex-direction: column;
 }
 
+.sidebar-close {
+    background: transparent;
+    border: none;
+    color: var(--muted-text);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: color .18s ease, background .18s ease;
+}
+
+body.sidebar-open {
+    overflow: hidden;
+}
+
+.sidebar-btn,
+.sidebar-btn .icon {
+    transition: color .22s ease, background-color .22s, transform .22 ease;
+}
+
+.sidebar-btn.open {
+    color: var(--main-color);
+}
+
 
 @keyframes fadeIn {
     from {
@@ -563,5 +586,21 @@ form {
     .panel,
     .chat-container {
         box-shadow: none;
+    }
+
+    .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: background .28s ease, opacity .22s ease;
+    z-index: 1090;
+    }
+
+    .sidebar-backdrop.active {
+    background: rgba(0, 0, 0, .45);
+    opacity: 1;
+    pointer-events: auto;
     }
 }
