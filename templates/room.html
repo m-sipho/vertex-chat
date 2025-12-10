@@ -64,7 +64,11 @@
             <div class="sidebar-inner">
                 <div class="active-list-header">
                     <span>Active Agents (<span id="agent-count">0</span>)</span>
-                
+                    <button class="sidebar-close" aria-label="Close members" onclick="closeSidebar()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
                 <ul class="agents-list" id="agents-list">
 
@@ -72,5 +76,7 @@
             </div>
         </div>
     </div>
+
+    <div id="sidebar-backdrop" class="sidebar-backdrop" onclick="closeSidebar()" aria-hidden="true"></div>
 
 {% endblock %}
