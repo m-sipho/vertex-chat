@@ -526,7 +526,7 @@ body.sidebar-open {
     .chat-room-wrapper {
         flex-direction: column;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
         gap: 0;
         padding: 0;
     }
@@ -534,7 +534,7 @@ body.sidebar-open {
     .chat-container {
         width: 100%;
         max-width: 100%;
-        height: calc(100vh - 56px);
+        height: calc(100dvh - 56px);
         border-radius: .5rem;
         margin: 0;
     }
