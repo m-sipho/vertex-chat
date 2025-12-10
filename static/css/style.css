@@ -252,7 +252,7 @@ form {
 }
 
 .chat-footer {
-    padding: 1.25rem;
+    padding: 0;
     background-color: var(--bg-card);
     border-top: 1px solid var(--border-color);
 }
@@ -285,6 +285,10 @@ form {
 
 #message-input {
     padding-right: 6.5rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 .send-input {
