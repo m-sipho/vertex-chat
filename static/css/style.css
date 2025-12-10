@@ -387,8 +387,13 @@ form {
 
 #sidebar {
     flex: 0 0 380px;
-    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-    display: none;
+    max-width: 0;
+    width: 380px;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-12px);
+    transition: transform .28s ease, max-width .28s ease, opacity .28s ease, margin .28s ease;
+    will-change: transform, max-width, opacity;
 }
 
 .chat-room-wrapper {
@@ -459,6 +464,21 @@ form {
     height: 20px;
     display: block;
 }
+
+#sidebar.active {
+    max-width: 380px;
+    opacity: 1;
+    transform: translateX(0);
+    margin-left: 1.5rem;
+}
+
+.sidebar-inner {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 
 @keyframes fadeIn {
     from {
