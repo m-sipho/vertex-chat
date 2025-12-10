@@ -45,7 +45,7 @@ def home():
             room_code = generate_unique_code(5)
 
             # Create user immediately, so it exists when user click CONNECT
-            rooms[room_code] = {"members": 0, "messages": []}
+            rooms[room_code] = {"members": [], "messages": []}
 
             return render_template("home.html", name=name, code=room_code)
         
@@ -116,7 +116,7 @@ def connect(auth):
 
     rooms[room]["messages"].append(content)
 
-    rooms[room]["members"] += 1
+    #rooms[room]["members"] += 1
     print(f"{name} joined room {room}")
 
 @socketio.on("disconnect")
@@ -125,10 +125,10 @@ def disconnect():
     room = session.get("room")
     name = session.get("name")
 
-    if room in rooms:
-        rooms[room]["members"] -= 1
-        if rooms[room]["members"] <= 0:
-            del rooms[room]
+    # if room in rooms:
+    #     rooms[room]["members"] -= 1
+    #     if rooms[room]["members"] <= 0:
+    #         del rooms[room]
     
     content = {
         "name": name,
