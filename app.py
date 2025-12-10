@@ -107,6 +107,10 @@ def connect(auth):
         return
     
     join_room(room)
+
+    # Add user to the room's members list
+    rooms[room]["members"].append({"name": name, "sid": request.sid})
+
     content = {
         "name": name,
         "message": "joined the room"
@@ -115,6 +119,10 @@ def connect(auth):
     send({"name": name, "message": "joined the room"}, to=room)
 
     rooms[room]["messages"].append(content)
+
+    # Emit updated agents list to all clients in the room
+    agent_names = [member["name"] for member in rooms[room]["members"]]
+    socketio.emit("update_agents", {"agents": agent_names, "count": len(agent_names)}, room=room)
 
     #rooms[room]["members"] += 1
     print(f"{name} joined room {room}")
@@ -129,7 +137,17 @@ def disconnect():
     #     rooms[room]["members"] -= 1
     #     if rooms[room]["members"] <= 0:
     #         del rooms[room]
-    
+    if room in rooms:
+        members = rooms[room].get("members", [])
+        rooms[room]["members"] = [member for member in members if member.get("sid") != request.sid]
+
+        # If no member remain, delete the room
+        if len(rooms[room]["members"]) == 0:
+            del rooms[room]
+        else:
+            # emit updated agents list to remaining clients
+            agent_names = [m["name"] for m in rooms[room]["members"]]
+            socketio.emit("update_agents", {"agents": agent_names, "count": len(agent_names)}, room=room)
     content = {
         "name": name,
         "message": "left the room"
