@@ -39,6 +39,27 @@ socketio.on("message", (data) => {
     }
 });
 
+socketio.on("update_agents", (data) => {
+    const agentsList = document.getElementById("agents-list");
+    const agentCount = document.getElementById("agent-count");
+
+    if (!agentsList) return;
+
+    // Clear the list
+    agentsList.innerHTML = "";
+
+    // Add each agent as a list item
+    data.agents.forEach((agent) => {
+        const li = document.createElement("li");
+        li.textContent = agent;
+        agentsList.appendChild(li);
+    });
+
+    if (agentCount) {
+        agentCount.textContent = data.count;
+    }
+});
+
 function sendMessage() {
     const input = document.getElementById("message-input");
     const message = input.value;
