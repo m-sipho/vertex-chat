@@ -123,7 +123,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function openSidebar() {
+    const sidebar= document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const toggleBtn = document.querySelector(".sidebar-btn");
+
+    sidebar?.classList.add("active");
+    backdrop?.classList.add("active");
+    toggleBtn?.classList.add("open");
+
+    if (toggleBtn) {
+        toggleBtn.setAttribute("aria-expanded", "true"); // Expand content and make visible
+    }
+    document.body.classList.add("sidebar-open");
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const toggleBtn = document.querySelector(".sidebar-btn");
+
+    sidebar?.classList.remove("active");
+    backdrop?.classList.remove("active");
+    toggleBtn?.classList.remove("open");
+
+    if (toggleBtn) {
+        toggleBtn.setAttribute("aria-expanded", "false"); // COntent collapse and hidden
+    }
+    document.body.classList.remove("sidebar-open");
+}
+
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("active");
+    if (!sidebar) {
+        return;
+    }
+    if (sidebar.classList.contains("active")) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
 }
