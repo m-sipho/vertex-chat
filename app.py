@@ -32,6 +32,8 @@ def home():
     # Grab our form data
     if request.method == "POST":
         name = request.form.get("name")
+        if (len(name) > 15):
+            return render_template("home.html", error="Username too long")
         code = request.form.get("code")
         generate = request.form.get("generate", False) # return False if generate doesn't exist
         connect = request.form.get("connect", False) # return False if connect doesn't exist
