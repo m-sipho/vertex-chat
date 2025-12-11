@@ -69,8 +69,27 @@ socketio.on("update_agents", (data) => {
 
     // Add each agent as a list item
     data.agents.forEach((agent) => {
+        const isMe = (agent === myUsername);
+
+        // Use primary color for me, generate color for others
+        const avatarColor = isMe ? "var(--main-color)" : getAvatarColor(agent);
+
+        // Specific class for styling 'Me'
+        const agentClass = isMe ? 'user-item is-me' : 'user-item';
+
         const li = document.createElement("li");
-        li.textContent = agent;
+        li.className = agentClass;
+        li.innerHTML = `
+            <div class="agent-avatar" style="background: ${avatarColor};">
+                ${agent.charAt(0).toUpperCase()}
+            </div>
+            <div>
+                <span style="font-weight: 600; color: ${isMe ? 'var(--main-color)' : 'var(--main-text)'}">
+                    ${agent}
+                </span>
+            </div>
+            ${isMe ? '<div class="me-badge">YOU</div>' : '<div class="agent-status"></div>'}
+        `;
         agentsList.appendChild(li);
     });
 
