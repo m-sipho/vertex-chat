@@ -566,6 +566,14 @@ body.sidebar-open {
     box-shadow: 0 0 5px green;
 }
 
+#typing-indicator {
+    padding: .75rem;
+    font-size: .85rem;
+    color: var(--muted-text);
+    font-style: italic;
+    animation: fadeIn .2s ease-in;
+}
+
 
 @keyframes fadeIn {
     from {
