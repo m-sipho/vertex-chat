@@ -39,6 +39,25 @@ socketio.on("message", (data) => {
     }
 });
 
+// Color generator
+function getAvatarColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        // Multiply current hash by 31, and add character code
+        hash = (hash * 31) + str.charCodeAt(i);
+
+        // Prevent hash from growing too large
+        if (hash > Number.MAX_SAFE_INTEGER) {
+            hash = hash % Number.MAX_SAFE_INTEGER;
+        }
+    }
+
+    // Map hash to a hue between 0 and 359
+    const h = Math.abs(hash) % 360;
+
+    return `hsl(${h}, 70%, 55%)`;
+}
+
 socketio.on("update_agents", (data) => {
     const agentsList = document.getElementById("agents-list");
     const agentCount = document.getElementById("agent-count");
