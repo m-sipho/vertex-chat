@@ -577,6 +577,7 @@ body.sidebar-open {
     }
 
     #sidebar.active {
+        max-width: 280px;
         transform: translateX(0);
         opacity: 1;
     }
