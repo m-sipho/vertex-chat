@@ -398,6 +398,7 @@ form {
     transform: translateX(-12px);
     transition: transform .28s ease, max-width .28s ease, opacity .28s ease, margin .28s ease;
     will-change: transform, max-width, opacity;
+    padding: 0 .5rem;
 }
 
 .chat-room-wrapper {
