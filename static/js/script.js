@@ -4,7 +4,42 @@ let myUsername = document.getElementById("current-username").value;
 
 const messages = document.querySelector(".messages-area");
 
-const sound = new Audio("../static/sounds/message-alert.wav")
+const sound = new Audio("../static/sounds/message-alert.wav");
+
+const messageInput = document.getElementById("message-input");
+
+let typingTimeout;
+
+// Listen when someone starts typing
+socketio.on("user_typing", (data) => {
+    const typingIndicator = document.getElementById("typing-indicator");
+    if (!typingIndicator) return;
+
+    // Show typing status
+    typingIndicator.textContent = `${data.name} is typing...`;
+    typingIndicator.style.display = "block";
+});
+
+// Listen when someone stops typing
+socketio.on("user_stop_typing", () => {
+    const typingIndicator = document.getElementById("typing-indicator");
+    if (!typingIndicator) return;
+
+    typingIndicator.style.display = "none";
+});
+
+// Detect typing in the message input field
+messageInput.addEventListener("input", () => {
+    socketio.emit("typing", {});
+
+    // Clear previous timeout
+    clearTimeout(typingTimeout);
+
+    // Stop typing after 1 second of inactivity
+    typingTimeout = setTimeout(() => {
+        socketio.emit("stop_typing", {});
+    }, 1000)
+});
 
 function createNotification(name, msg) {
     const content = `
@@ -104,7 +139,11 @@ function sendMessage() {
     if (message == "") return;
 
     // Send an event named "message" to the server via web socket tunnel
-    socketio.emit("message", {data: message})
+    socketio.emit("message", {data: message});
+
+    // Stop typing indicator when sending
+    socketio.emit("stop_typing", {});
+    clearTimeout(typingTimeout);
     
     input.value = "";
     input.focus();
@@ -133,7 +172,6 @@ function appendMessage(user, msg, time, isMe) {
     messagesArea.scrollTop = messagesArea.scrollHeight;
 }
 
-const messageInput = document.getElementById("message-input");
 messageInput.addEventListener('keydown', (e) => {
     if (e.key === "Enter") {
         sendMessage();
