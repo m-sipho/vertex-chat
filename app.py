@@ -160,5 +160,21 @@ def disconnect():
     rooms[room]["messages"].append(content)
     print(f"{name} left room {room}")
 
+@socketio.on("typing")
+def handle_typing(data):
+    room = session.get("room")
+    name = session.get("name")
+
+    if room and name:
+        socketio.emit("user_typing", {"name": name}, skip_sid=request.sid)
+
+@socketio.on("stop_typing")
+def handle_stop_typing(data):
+    room = session.get("room")
+    name = session.get("name")
+
+    if room and name:
+        socketio.emit("user_stop_typing", {})
+
 if __name__ == "__main__":
     socketio.run(app, debug=True)
