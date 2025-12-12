@@ -12,20 +12,46 @@ let typingTimeout;
 
 // Listen when someone starts typing
 socketio.on("user_typing", (data) => {
+    if (!data || !data.name) return;
+
     const typingIndicator = document.getElementById("typing-indicator");
     if (!typingIndicator) return;
 
     // Show typing status
     typingIndicator.textContent = `${data.name} is typing...`;
     typingIndicator.style.display = "block";
+
+    // Also show typing indicator next to the agent's name in the sidebar
+    const agents = document.querySelectorAll("#agents-list .user-item");
+    agents.forEach((li) => {
+        const nameSpan = li.querySelector("div > span");
+        if (nameSpan && nameSpan.textContent.trim() == data.name) {
+            const agentTyping = li.querySelector(".agent-typing");
+            if (agentTyping) {
+                agentTyping.style.display = "block";
+            }
+        }
+    });
 });
 
 // Listen when someone stops typing
-socketio.on("user_stop_typing", () => {
+socketio.on("user_stop_typing", (data) => {
     const typingIndicator = document.getElementById("typing-indicator");
     if (!typingIndicator) return;
 
     typingIndicator.style.display = "none";
+
+    // Also remove typing indicator next to the agent's name in the sidebar
+    const agents = document.querySelectorAll("#agents-list .user-item");
+    agents.forEach((li) => {
+        const nameSpan = li.querySelector("div > span"); // Select direct span in div
+        if (nameSpan && nameSpan.textContent.trim() == data.name) {
+            const agentTyping = li.querySelector(".agent-typing");
+            if (agentTyping) {
+                agentTyping.style.display = "none";
+            }
+        }
+    });
 });
 
 // Detect typing in the message input field
@@ -48,8 +74,16 @@ function createNotification(name, msg) {
                 <span class="join-name">${name}</span> ${msg}
             </span>
         </div>
-    `
-    messages.insertAdjacentHTML('beforeend', content);
+    `;
+
+    const messagesArea = document.querySelector(".messages-area");
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    if (typingIndicator && messagesArea.contains(typingIndicator)) {
+        typingIndicator.insertAdjacentHTML('beforebegin', content)
+    } else {
+        messages.insertAdjacentHTML('beforeend', content);
+    }
     messages.scrollTop = messages.scrollHeight;
 }
 
@@ -118,10 +152,11 @@ socketio.on("update_agents", (data) => {
             <div class="agent-avatar" style="background: ${avatarColor};">
                 ${agent.charAt(0).toUpperCase()}
             </div>
-            <div>
+            <div style="display: flex; flex-direction: column;">
                 <span style="font-weight: 600; color: ${isMe ? 'var(--main-color)' : 'var(--main-text)'}">
                     ${agent}
                 </span>
+                <span class="agent-typing" style="display: none;">typing...</span>
             </div>
             ${isMe ? '<div class="me-badge">YOU</div>' : '<div class="agent-status"></div>'}
         `;
@@ -168,7 +203,13 @@ function appendMessage(user, msg, time, isMe) {
     div.appendChild(bubble);
 
     const messagesArea = document.querySelector(".messages-area");
-    messagesArea.appendChild(div);
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    if (typingIndicator && messagesArea.contains(typingIndicator)) {
+        messagesArea.insertBefore(div, typingIndicator);
+    } else {
+        messagesArea.appendChild(div);
+    }
     messagesArea.scrollTop = messagesArea.scrollHeight;
 }
 
