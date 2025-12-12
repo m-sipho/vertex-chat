@@ -8,20 +8,22 @@
     </div>
     {% endif %}
 
-    <form method="post">
-        <div class="heading">
-            <h2>Vertex</h2>
-            <p>Real-Time Chat</p>
-        </div>
+    <div class="form-wrapper">
+        <form method="post">
+            <div class="heading">
+                <h2>Vertex</h2>
+                <p>Real-Time Chat</p>
+            </div>
 
-        <div class="form-row">
-            <input type="text" placeholder="Username" name="name" value="{{ name }}" class="text-input" id="username-input" maxlength="15">
-        </div>
+            <div class="form-row">
+                <input type="text" placeholder="Username" name="name" value="{{ name }}" class="text-input" id="username-input" maxlength="15">
+            </div>
 
-        <div class="form-row form-group">
-            <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}" class="text-input">
-            <button type="submit" name="generate" class="btn">GENERATE</button>
-        </div>
-        <button type="submit" name="connect" class="btn btn-primary connect">CONNECT</button>
-    </form>
+            <div class="form-row form-group">
+                <input type="text" placeholder="ROOM CODE" name="code" value="{{ code }}" class="text-input">
+                <button type="submit" name="generate" class="btn">GENERATE</button>
+            </div>
+            <button type="submit" name="connect" class="btn btn-primary connect">CONNECT</button>
+        </form>
+    </div>
 {% endblock %}

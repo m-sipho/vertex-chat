@@ -43,6 +43,14 @@ form {
     overflow: hidden;
 }
 
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1rem;
+}
+
 .heading {
     text-align: center;
     margin-bottom: 2rem;
@@ -604,6 +612,12 @@ body.sidebar-open {
         height: auto;
         padding: 0;
         overflow: auto;
+    }
+
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .chat-room-wrapper {
