@@ -18,7 +18,7 @@ socketio.on("user_typing", (data) => {
     if (!typingIndicator) return;
 
     // Show typing status
-    //typingIndicator.textContent = `${data.name} is typing...`;
+    const typingIndicatorAvatar = document.getElementById("typing-indicator-avatar");
     typingIndicator.style.display = "flex";
 
     // Also show typing indicator next to the agent's name in the sidebar
@@ -30,6 +30,13 @@ socketio.on("user_typing", (data) => {
             if (agentTyping) {
                 agentTyping.style.display = "block";
             }
+
+            const agentAvatar = li.querySelector(".agent-avatar");
+            const style = agentAvatar.getAttribute("style");
+            const letter = agentAvatar.innerText;
+
+            typingIndicatorAvatar.setAttribute("style", style);
+            typingIndicatorAvatar.innerText = letter;
         }
     });
 });

@@ -582,7 +582,7 @@ body.sidebar-open {
     font-size: .85rem;
     color: var(--muted-text);
     font-style: italic;
-    background: linear-gradient(to top, rgba(119, 0, 255, 0.199), transparent);
+    background: linear-gradient(to bottom, rgba(119, 0, 255, 0.199), transparent);
     border-radius: .5rem;
     margin-top: .25rem;
     animation: fadeIn .2s ease-in;
