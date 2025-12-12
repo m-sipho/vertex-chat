@@ -567,13 +567,24 @@ body.sidebar-open {
 }
 
 #typing-indicator {
-    padding: .75rem;
+    position: sticky;
+    bottom: 0;
+    display: none;
+    padding: .5rem .75rem;
     font-size: .85rem;
     color: var(--muted-text);
     font-style: italic;
+    background: linear-gradient(to top, rgba(0, 0, 0, .06), transparent);
+    border-radius: .5rem;
+    margin-top: .25rem;
     animation: fadeIn .2s ease-in;
 }
 
+.agent-typing {
+    font-size: .75rem;
+    color: var(--muted-text);
+    font-style: italic;
+}
 
 @keyframes fadeIn {
     from {
