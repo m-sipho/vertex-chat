@@ -174,7 +174,7 @@ def handle_stop_typing(data):
     name = session.get("name")
 
     if room and name:
-        socketio.emit("user_stop_typing", {})
+        socketio.emit("user_stop_typing", {"name": name})
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)
