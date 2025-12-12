@@ -18,8 +18,8 @@ socketio.on("user_typing", (data) => {
     if (!typingIndicator) return;
 
     // Show typing status
-    typingIndicator.textContent = `${data.name} is typing...`;
-    typingIndicator.style.display = "block";
+    //typingIndicator.textContent = `${data.name} is typing...`;
+    typingIndicator.style.display = "flex";
 
     // Also show typing indicator next to the agent's name in the sidebar
     const agents = document.querySelectorAll("#agents-list .user-item");

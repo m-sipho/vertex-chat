@@ -582,16 +582,70 @@ body.sidebar-open {
     font-size: .85rem;
     color: var(--muted-text);
     font-style: italic;
-    background: linear-gradient(to top, rgba(0, 0, 0, .06), transparent);
+    background: linear-gradient(to top, rgba(119, 0, 255, 0.199), transparent);
     border-radius: .5rem;
     margin-top: .25rem;
     animation: fadeIn .2s ease-in;
+    justify-content: space-between;
 }
 
 .agent-typing {
     font-size: .75rem;
     color: var(--muted-text);
     font-style: italic;
+}
+
+.stream-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 24px;
+    margin: auto 0;
+}
+
+.bar {
+    width: 4px;
+    background: var(--main-color);
+    border-radius: 2px;
+    animation: equalize 1s infinite ease-in-out;
+}
+
+.bar:nth-child(1) {
+    height: 40%;
+    animation-delay: .0s;
+}
+
+.bar:nth-child(2) {
+    height: 70%;
+    animation-delay: .1s;
+}
+
+.bar:nth-child(3) {
+    height: 100%;
+    animation-delay: .2s;
+}
+
+.bar:nth-child(4) {
+    height: 60%;
+    animation-delay: .3s;
+}
+
+.bar:nth-child(5) {
+    height: 30%;
+    animation-delay: .4s;
+}
+
+@keyframes equalize {
+    0%, 100% {
+        transform: scaleY(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scaleY(1.5);
+        opacity: 1;
+        box-shadow: 0 0 8px var(--main-color);
+    }
 }
 
 @keyframes fadeIn {
