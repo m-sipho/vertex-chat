@@ -32,11 +32,23 @@ socketio.on("user_typing", (data) => {
             }
 
             const agentAvatar = li.querySelector(".agent-avatar");
-            const style = agentAvatar.getAttribute("style");
-            const letter = agentAvatar.innerText;
 
-            typingIndicatorAvatar.setAttribute("style", style);
-            typingIndicatorAvatar.innerText = letter;
+            // Checks if an avatar for the specific user already exists in the typing container
+            const existingAvatar = [...typingIndicatorAvatar.children].some((a) => a.dataset.name === data.name);
+
+            if (!existingAvatar && agentAvatar) {
+                const style = agentAvatar.getAttribute("style");
+                const avatarClass = agentAvatar.getAttribute("class");
+                const letter = agentAvatar.innerText;
+
+                const newDiv = document.createElement("div");
+                newDiv.setAttribute("class", avatarClass);
+                newDiv.setAttribute("style", style);
+                newDiv.innerText = letter;
+                newDiv.dataset.name = data.name;
+
+                typingIndicatorAvatar.appendChild(newDiv);
+            }
         }
     });
 });
