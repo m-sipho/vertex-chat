@@ -655,8 +655,8 @@ body.sidebar-open {
     background: var(--bg-panel);
     border: 1px solid var(--border-color);
     color: var(--muted-text);
-    width: 28px;
-    height: 28px;
+    width: 33px;
+    height: 33px;
     border-radius: 50%;
     display: flex;
     align-items: center;
