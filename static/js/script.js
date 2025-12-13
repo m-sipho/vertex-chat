@@ -56,9 +56,21 @@ socketio.on("user_typing", (data) => {
 // Listen when someone stops typing
 socketio.on("user_stop_typing", (data) => {
     const typingIndicator = document.getElementById("typing-indicator");
-    if (!typingIndicator) return;
+    const typingIndicatorAvatar = document.getElementById("typing-indicator-avatar");
 
-    typingIndicator.style.display = "none";
+    if (!typingIndicator || !typingIndicatorAvatar) return;
+
+    // Div to remove if it's user was typing
+    const avatarToRemove = document.querySelector(`div[data-name="${data.name}"]`);
+
+    if (avatarToRemove) {
+        avatarToRemove.remove();
+    }
+
+    // Hide the container if no childern are left
+    if (typingIndicatorAvatar.children.length === 0) {
+        typingIndicator.style.display = "none";
+    }
 
     // Also remove typing indicator next to the agent's name in the sidebar
     const agents = document.querySelectorAll("#agents-list .user-item");

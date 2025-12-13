@@ -635,6 +635,10 @@ body.sidebar-open {
     animation-delay: .4s;
 }
 
+#typing-indicator-avatar {
+    display: flex;
+}
+
 @keyframes equalize {
     0%, 100% {
         transform: scaleY(1);
