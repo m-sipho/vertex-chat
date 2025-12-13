@@ -42,9 +42,17 @@
                     {% else %}
                         <div class="message-row {% if msg.name == username %}own{% else %}other{% endif %}">
                             <span class="sender-name">{{ msg.name }}</span>
-                            <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
-                                <div>{{ msg.message }}</div>
-                                <div class="timestamp" time-utc="{{ msg.time }}"></div>
+
+                            <div class="message-content">
+                                <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
+                                    <div>{{ msg.message }}</div>
+                                    <div class="timestamp" time-utc="{{ msg.time }}"></div>
+                                </div>
+                                <button class="reply">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     {% endif %}
