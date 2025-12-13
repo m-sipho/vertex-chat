@@ -226,6 +226,9 @@ function appendMessage(user, msg, time, isMe) {
     name.className = "sender-name";
     name.innerText = user;
 
+    const messageContent = document.createElement("div");
+    messageContent.className = "message-content";
+
     const bubble = document.createElement("div");
     bubble.className = `bubble ${isMe ? 'own' : 'other'}`;
     bubble.innerHTML = `
@@ -233,8 +236,19 @@ function appendMessage(user, msg, time, isMe) {
         <div class="timestamp">${time}</div>
     `;
 
+    const replyButton = document.createElement("button");
+    replyButton.className = "reply";
+    replyButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5" />
+        </svg>
+    `
+
+    messageContent.appendChild(bubble);
+    messageContent.appendChild(replyButton);
+
     div.appendChild(name);
-    div.appendChild(bubble);
+    div.appendChild(messageContent);
 
     const messagesArea = document.querySelector(".messages-area");
     const typingIndicator = document.getElementById('typing-indicator');
