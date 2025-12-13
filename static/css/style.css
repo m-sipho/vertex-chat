@@ -643,6 +643,53 @@ body.sidebar-open {
     margin-left: -5px;
 }
 
+.message-content {
+    position: relative;
+    z-index: 2;
+}
+
+.reply {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    color: var(--muted-text);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reply svg {
+    width: 16px;
+    height: 16px;
+}
+
+.message-row.other .reply {
+    right: 10px;
+}
+
+.message-row.other .message-content:hover .reply {
+    right: -35px;
+    opacity: 1;
+}
+
+.message-row.own .reply {
+    left: 10px;
+}
+
+.message-row.own .message-content:hover .reply {
+    left: -35px;
+    opacity: 1;
+}
+
 @keyframes equalize {
     0%, 100% {
         transform: scaleY(1);
