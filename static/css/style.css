@@ -639,6 +639,10 @@ body.sidebar-open {
     display: flex;
 }
 
+#typing-indicator-avatar .agent-avatar {
+    margin-left: -5px;
+}
+
 @keyframes equalize {
     0%, 100% {
         transform: scaleY(1);
