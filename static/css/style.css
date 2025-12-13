@@ -703,7 +703,7 @@ body.sidebar-open {
     }
 
     .message-row {
-        max-width: 95%;
+        max-width: 85%;
     }
 
     #message-input {
