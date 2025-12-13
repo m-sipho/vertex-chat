@@ -14,6 +14,9 @@ let typingTimeout;
 socketio.on("user_typing", (data) => {
     if (!data || !data.name) return;
 
+    const codeBadge = document.querySelector(".code-badge").innerText;
+    if (data.room != codeBadge) return;
+
     const typingIndicator = document.getElementById("typing-indicator");
     if (!typingIndicator) return;
 
