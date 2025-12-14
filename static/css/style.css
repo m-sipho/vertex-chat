@@ -45,9 +45,10 @@ form {
 
 .form-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100dvh;
     padding: 1rem;
 }
 
