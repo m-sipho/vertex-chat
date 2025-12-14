@@ -140,24 +140,28 @@ def disconnect():
     #     if rooms[room]["members"] <= 0:
     #         del rooms[room]
     if room in rooms:
+        # Remove user from the list
         members = rooms[room].get("members", [])
         rooms[room]["members"] = [member for member in members if member.get("sid") != request.sid]
 
+        # Update the sidebar for remaining users
+        agent_names = [m["name"] for m in rooms[room]["members"]]
+        socketio.emit("update_agents", {"agents": agent_names, "count": len(agent_names)}, room=room)
+
+        # Create left messages
+        content = {
+            "name": name,
+            "message": "left the room"
+        }
+
+        # Broadcast and save
+        send({"name": name, "message": "left the room"}, to=room)
+        rooms[room]["messages"].append(content)
+
         # If no member remain, delete the room
-        if len(rooms[room]["members"]) == 0:
+        if len(rooms[room]["members"]) <= 0:
             del rooms[room]
-        else:
-            # emit updated agents list to remaining clients
-            agent_names = [m["name"] for m in rooms[room]["members"]]
-            socketio.emit("update_agents", {"agents": agent_names, "count": len(agent_names)}, room=room)
-    content = {
-        "name": name,
-        "message": "left the room"
-    }
-
-    send({"name": name, "message": "left the room"}, to=room)
-
-    rooms[room]["messages"].append(content)
+            
     print(f"{name} left room {room}")
 
 @socketio.on("typing")
