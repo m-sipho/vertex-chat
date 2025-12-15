@@ -350,3 +350,25 @@ function toggleSidebar() {
         openSidebar();
     }
 }
+
+function startReply(name, text) {
+    const replyBar = document.getElementById("reply-bar");
+    document.querySelector(".reply-target").innerText = name;
+    document.getElementById("reply-text").innerText = text;
+    replyBar.style.display = "flex";
+
+    document.getElementById("message-input").focus();
+}
+
+// Listen for when the reply button is clicked
+const replyBtns = document.querySelectorAll(".reply");
+replyBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+        let name = button.dataset.name;
+        if (name === myUsername) {
+            name = "You";
+        }
+        const message = button.dataset.message;
+        startReply(name, message);
+    });
+});

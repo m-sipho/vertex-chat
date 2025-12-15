@@ -48,7 +48,7 @@
                                     <div>{{ msg.message }}</div>
                                     <div class="timestamp" time-utc="{{ msg.time }}"></div>
                                 </div>
-                                <button class="reply">
+                                <button class="reply" data-name="{{ msg.name | escape }}" data-message="{{ msg.message }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5" />
                                     </svg>
@@ -73,6 +73,17 @@
             </div>
 
             <div class="chat-footer">
+                <div class="reply-bar" id="reply-bar">
+                    <div class="reply-content">
+                        <span class="reply-target">Mthokozisi</span>
+                        <span class="reply-text" id="reply-text">How are you?hfbvhsdbhbdsvbhsdbdsybyusdbvjhcsajbxsjavdtsatdjashdbskvfdshyfvdsgjfvudstfvsavcghsadvashdbaskjhdsavdsadvas</span>
+                    </div>
+                    <button class="close-reply sidebar-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
                 <div class="input-row">
                     <input type="text" class="text-input send-input" placeholder="Message" id="message-input">
                     <button type="button" class="btn-send" onclick="sendMessage()">SEND</button>
