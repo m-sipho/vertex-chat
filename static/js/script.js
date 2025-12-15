@@ -376,3 +376,7 @@ messages.addEventListener("click", (e) => {
         startReply(name, msg);
     }
 })
+
+function cancelReply() {
+    document.getElementById("reply-bar").style.display = "none";
+}
