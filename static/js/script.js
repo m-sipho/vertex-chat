@@ -238,6 +238,8 @@ function appendMessage(user, msg, time, isMe) {
 
     const replyButton = document.createElement("button");
     replyButton.className = "reply";
+    replyButton.setAttribute("data-name", user);
+    replyButton.setAttribute("data-message", msg);
     replyButton.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5" />
@@ -361,14 +363,16 @@ function startReply(name, text) {
 }
 
 // Listen for when the reply button is clicked
-const replyBtns = document.querySelectorAll(".reply");
-replyBtns.forEach((button) => {
-    button.addEventListener("click", () => {
-        let name = button.dataset.name;
+messages.addEventListener("click", (e) => {
+    const btn = e.target.closest(".reply");
+
+    if (btn) {
+        let name = btn.getAttribute("data-name");
         if (name === myUsername) {
             name = "You";
         }
-        const message = button.dataset.message;
-        startReply(name, message);
-    });
-});
+        const msg = btn.getAttribute("data-message");
+
+        startReply(name, msg);
+    }
+})
