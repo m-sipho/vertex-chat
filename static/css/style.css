@@ -1,8 +1,8 @@
 :root {
     --bg-body: #0b0f19;
     --bg-card: #111827;
-    --bg-panel: #121624;
-    --bg-input: #030712;
+    --bg-panel: #181b27;
+    --bg-input: #1e1e1e85;
     --main-color: #4f46e5;
     --border-color: #1f2937;
     --main-hover: #4338ca;
@@ -395,8 +395,31 @@ form {
     font-weight: 700;
 }
 
+.reply-quote {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+    padding: .5rem;
+    border-radius: .5rem;
+    background: rgba(0, 0, 0, 0.14);
+    border-left: 3px solid rgba(255, 255, 255, .5);
+    font-size: .8rem;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.quote-sender {
+    font-weight: bold;
+    color: rgba(255, 255, 255, .5);
+}
+
+.quote-text {
+    font-size: .8rem;
+    color: var(--muted-text);
+}
+
 .bubble {
-    padding: .75rem 1.25rem;
+    padding: .65rem .45rem;
     border-radius: 1rem;
     font-size: .95rem;
     line-height: 1.5;

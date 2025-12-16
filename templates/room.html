@@ -45,6 +45,11 @@
 
                             <div class="message-content">
                                 <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
+                                    <div class="reply-quote">
+                                        <span class="quote-sender">Mthokozisi</span>
+                                        <span class="quote-text" id="quote-text">How are you?hfbvhsdbhbdsvbhshbjhdsvbhjbdshjcsvjsdvcjhbcsddbdsybyusdbvjhcsajbxsjavdtsatdjashdbskvfdshyfvdsgjfvudstfvsavcghsadvashdbaskjhdsavdsadvas</span>
+                                    </div>
+
                                     <div>{{ msg.message }}</div>
                                     <div class="timestamp" time-utc="{{ msg.time }}"></div>
                                 </div>
@@ -75,8 +80,8 @@
             <div class="chat-footer">
                 <div class="reply-bar" id="reply-bar">
                     <div class="reply-content">
-                        <span class="reply-target">Mthokozisi</span>
-                        <span class="reply-text" id="reply-text">How are you?hfbvhsdbhbdsvbhsdbdsybyusdbvjhcsajbxsjavdtsatdjashdbskvfdshyfvdsgjfvudstfvsavcghsadvashdbaskjhdsavdsadvas</span>
+                        <span class="reply-target"></span>
+                        <span class="reply-text" id="reply-text"></span>
                     </div>
                     <button class="close-reply sidebar-close" onclick="cancelReply()">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
