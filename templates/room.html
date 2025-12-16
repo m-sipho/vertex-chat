@@ -45,10 +45,12 @@
 
                             <div class="message-content">
                                 <div class="bubble {% if msg.name == username %}own{% else %}other{% endif %}">
-                                    <div class="reply-quote">
-                                        <span class="quote-sender">Mthokozisi</span>
-                                        <span class="quote-text" id="quote-text">How are you?hfbvhsdbhbdsvbhshbjhdsvbhjbdshjcsvjsdvcjhbcsddbdsybyusdbvjhcsajbxsjavdtsatdjashdbskvfdshyfvdsgjfvudstfvsavcghsadvashdbaskjhdsavdsadvas</span>
-                                    </div>
+                                    {% if msg.quote_sender and msg.quote_msg %}
+                                        <div class="reply-quote">
+                                            <span class="quote-sender">{{ msg.quote_sender }}</span>
+                                            <span class="quote-text" id="quote-text">{{ msg.quote_msg }}</span>
+                                        </div>
+                                    {% endif %}
 
                                     <div>{{ msg.message }}</div>
                                     <div class="timestamp" time-utc="{{ msg.time }}"></div>
