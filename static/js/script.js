@@ -210,11 +210,13 @@ function sendMessage() {
     let replySender = null;
     let replyMessage = null;
     const replyContent = document.querySelector(".reply-bar");
-    if (replyContent.style.display != "") {
+    if (replyContent.style.display != "" && replyContent.style.display != "none") {
         replySender = document.querySelector(".reply-target").innerText;
         replyMessage = document.getElementById("reply-text").innerText;
 
         replyContent.style.display = "none";
+        document.querySelector(".reply-target").innerText = "";
+        document.getElementById("reply-text").innerText = "";
     }
 
     // Send an event named "message" to the server via web socket tunnel
