@@ -138,7 +138,7 @@ socketio.on("message", (data) => {
                 audio.play();
             }
         }
-        appendMessage(data.name, data.message, formattedTime, isMe);
+        appendMessage(data.name, data.message, data.quote_sender, data.quote_msg, formattedTime, isMe);
     }
 });
 
@@ -207,8 +207,18 @@ function sendMessage() {
     const message = input.value;
     if (message == "") return;
 
+    let replySender = null;
+    let replyMessage = null;
+    const replyContent = document.querySelector(".reply-bar");
+    if (replyContent.style.display != "") {
+        replySender = document.querySelector(".reply-target").innerText;
+        replyMessage = document.getElementById("reply-text").innerText;
+
+        replyContent.style.display = "none";
+    }
+
     // Send an event named "message" to the server via web socket tunnel
-    socketio.emit("message", {data: message});
+    socketio.emit("message", {data: message, quoteSender: replySender, quoteText: replyMessage});
 
     // Stop typing indicator when sending
     socketio.emit("stop_typing", {});
@@ -218,7 +228,7 @@ function sendMessage() {
     input.focus();
 }
 
-function appendMessage(user, msg, time, isMe) {
+function appendMessage(user, msg, quoteSender, quoteText, time, isMe) {
     const div = document.createElement("div");
     div.className = `message-row ${isMe ? 'own' : 'other'}`;
 
@@ -231,10 +241,21 @@ function appendMessage(user, msg, time, isMe) {
 
     const bubble = document.createElement("div");
     bubble.className = `bubble ${isMe ? 'own' : 'other'}`;
-    bubble.innerHTML = `
-        <div>${msg}</div>
-        <div class="timestamp">${time}</div>
-    `;
+    if (quoteSender == null && quoteText == null) {
+        bubble.innerHTML = `
+            <div>${msg}</div>
+            <div class="timestamp">${time}</div>
+        `;
+    } else {
+        bubble.innerHTML = `
+            <div class="reply-quote">
+                <span class="quote-sender">${quoteSender}</span>
+                <span class="quote-text" id="quote-text">${quoteText}</span>
+            </div>
+            <div>${msg}</div>
+            <div class="timestamp">${time}</div>
+        `;
+    }
 
     const replyButton = document.createElement("button");
     replyButton.className = "reply";

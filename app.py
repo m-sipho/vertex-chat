@@ -89,7 +89,9 @@ def message(data):
     content = {
         "name": session.get("name"),
         "message": data["data"],
-        "time": time
+        "time": time,
+        "quote_sender": data["quoteSender"],
+        "quote_msg": data["quoteText"]
     }
 
     send(content, to=room)
