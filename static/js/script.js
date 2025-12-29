@@ -391,9 +391,9 @@ messages.addEventListener("click", (e) => {
 
     if (btn) {
         let name = btn.getAttribute("data-name");
-        if (name === myUsername) {
-            name = "You";
-        }
+        // if (name === myUsername) {
+        //     name = "You";
+        // }
         const msg = btn.getAttribute("data-message");
 
         startReply(name, msg);

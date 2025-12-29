@@ -3,6 +3,7 @@
     --bg-card: #111827;
     --bg-panel: #181b27;
     --bg-input: #1e1e1e85;
+    --bg-home-input: #060a12;
     --main-color: #4f46e5;
     --border-color: #1f2937;
     --main-hover: #4338ca;
@@ -792,6 +793,10 @@ body.sidebar-open {
 .reply:hover {
     color: var(--main-color);
     border: 1px solid var(--main-color);
+}
+
+.text-input.home {
+    background-color: var(--bg-home-input);
 }
 
 @keyframes float-up-1 {
