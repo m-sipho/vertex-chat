@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 *.css linguist-vendored 
+=======
+*.css linguist vendored 
+>>>>>>> 3fdf96c7e1fdf393bd64a8902bfdd35ec1ec2b22
