@@ -39,7 +39,7 @@ form {
     width: 100%;
     max-width: 400px;
     border: var(--glass-border);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .5);
+    box-shadow: 0 15px 20px -8px rgba(0, 0, 0, .5);
     position: relative;
     overflow: hidden;
 }
@@ -363,7 +363,7 @@ form {
     box-shadow: 0 20px 15px -5px rgba(0, 0, 0, .1 );
     text-transform: uppercase;
     letter-spacing: .05rem;
-    font-size: .7rem;
+    font-size: .5rem;
 }
 
 .join-name {
